@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases para mi Amor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Botón anterior -->
+        <button class="nav-btn prev-btn" id="prevBtn" aria-label="Escena anterior">
+            <span class="arrow">❮</span>
+        </button>
+
+        <!-- Contenedor de escenas -->
+        <div class="scenes-container">
+            <!-- Escena 1 -->
+            <div class="scene active" data-scene="1">
+                <div class="text-content">
+                    <h2 class="romantic-text">Nunca imaginé que aquella primera vez que te escribí estaría conociendo a la mujer tan maravillosa que eres.</h2>
+                    <div class="hearts">✍️💌✨</div>
+                </div>
+            </div>
+
+            <!-- Escena 2 -->
+            <div class="scene" data-scene="2">
+                <div class="text-content">
+                    <h2 class="romantic-text">El día que la vida me regaló el placer de verte frente a mí, quedé sorprendido no solo por tu belleza, sino también por tu personalidad.</h2>
+                    <div class="hearts">😍👁️💖</div>
+                </div>
+            </div>
+
+            <!-- Escena 3 -->
+            <div class="scene" data-scene="3">
+                <div class="text-content">
+                    <h2 class="romantic-text">Conocerte mejor y compartir un café contigo fue, sin duda, la mejor primera cita que pude tener.</h2>
+                    <div class="hearts">☕💕🥰</div>
+                </div>
+            </div>
+
+            <!-- Escena 4 -->
+            <div class="scene" data-scene="4">
+                <div class="text-content">
+                    <h2 class="romantic-text">El que cocinaras para mí y el poder sentir tu cuerpo desnudo junto al mío son recuerdos que siempre guardaré dentro de mi.</h2>
+                    <div class="hearts">🍳💋🔥</div>
+                </div>
+            </div>
+
+            <!-- Escena 5 -->
+            <div class="scene" data-scene="5">
+                <div class="text-content">
+                    <h2 class="romantic-text">Tus visitas, tu cariño y la forma en que me lo demuestras son regalos que me da la vida contigo y te agradezco por todo.</h2>
+                    <div class="hearts">🚗💝🙏</div>
+                </div>
+            </div>
+
+            <!-- Escena 6 -->
+            <div class="scene" data-scene="6">
+                <div class="text-content">
+                    <h2 class="romantic-text">Gracias, mi amor, por ser tú, por dejarme compartir tu vida y porque, incluso en los momentos difíciles, siempre querré seguir a tu lado.</h2>
+                    <div class="photo-container">
+                        <img src="MaleAndMe.jpg" alt="Nosotros" class="couple-photo">
+                    </div>
+                    <div class="hearts">🙏💖👫</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón siguiente -->
+        <button class="nav-btn next-btn" id="nextBtn" aria-label="Escena siguiente">
+            <span class="arrow">❯</span>
+        </button>
+
+        <!-- Indicadores de escena -->
+        <div class="scene-indicators">
+            <span class="indicator active" data-scene="1"></span>
+            <span class="indicator" data-scene="2"></span>
+            <span class="indicator" data-scene="3"></span>
+            <span class="indicator" data-scene="4"></span>
+            <span class="indicator" data-scene="5"></span>
+            <span class="indicator" data-scene="6"></span>
+        </div>
+    </div>
+
+    <!-- Corazones flotantes animados -->
+    <div class="floating-hearts">
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+        <div class="floating-heart">💘</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

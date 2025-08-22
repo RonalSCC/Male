@@ -1,0 +1,414 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scenes-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
+}
+
+.scene.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scene.prev {
+    transform: translateX(-100%);
+}
+
+/* Fondos gradient pasteles para cada escena */
+.scene[data-scene="1"] {
+    background: linear-gradient(135deg, #ffeef8 0%, #f8e8ff 50%, #ffe8f5 100%);
+}
+
+.scene[data-scene="2"] {
+    background: linear-gradient(135deg, #e8f5ff 0%, #f0e8ff 50%, #e8fffa 100%);
+}
+
+.scene[data-scene="3"] {
+    background: linear-gradient(135deg, #fff8e8 0%, #ffe8f0 50%, #f8fff0 100%);
+}
+
+.scene[data-scene="4"] {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e8f0ff 50%, #f8e8ff 100%);
+}
+
+.scene[data-scene="5"] {
+    background: linear-gradient(135deg, #fef7e8 0%, #f8f0e8 50%, #e8f8f0 100%);
+}
+
+.scene[data-scene="6"] {
+    background: linear-gradient(135deg, #f5e8ff 0%, #ffe8e8 50%, #e8fff5 100%);
+}
+
+.text-content {
+    text-align: center;
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    padding: 0 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.romantic-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.8rem);
+    color: #8b5a8c;
+    text-shadow: 2px 2px 4px rgba(139, 90, 140, 0.1);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.hearts {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    animation: heartBeat 2s ease-in-out infinite;
+}
+
+/* Contenedor de foto para la escena 6 */
+.photo-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couple-photo {
+    max-width: 350px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(139, 90, 140, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+}
+
+.couple-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(139, 90, 140, 0.4);
+}
+
+/* Botones de navegación */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+}
+
+.prev-btn {
+    left: 1.5rem;
+}
+
+.next-btn {
+    right: 1.5rem;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    color: #8b5a8c;
+    font-weight: bold;
+}
+
+/* Indicadores de escena */
+.scene-indicators {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #8b5a8c;
+    transform: scale(1.3);
+}
+
+.indicator:hover {
+    background: rgba(139, 90, 140, 0.7);
+}
+
+/* Corazones flotantes */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: float 6s infinite linear;
+    opacity: 0.6;
+}
+
+.floating-heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 25%;
+    animation-delay: -2s;
+    animation-duration: 6s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 50%;
+    animation-delay: -4s;
+    animation-duration: 10s;
+}
+
+.floating-heart:nth-child(4) {
+    left: 75%;
+    animation-delay: -6s;
+    animation-duration: 7s;
+}
+
+.floating-heart:nth-child(5) {
+    left: 90%;
+    animation-delay: -8s;
+    animation-duration: 9s;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 50%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.6;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .prev-btn {
+        left: 0.8rem;
+    }
+    
+    .next-btn {
+        right: 0.8rem;
+    }
+    
+    .arrow {
+        font-size: 1.1rem;
+    }
+    
+    .scene {
+        padding: 1rem;
+    }
+    
+    .hearts {
+        font-size: 1.8rem;
+    }
+    
+    .couple-photo {
+        max-width: 260px;
+        max-height: 300px;
+    }
+    
+    .text-content {
+        padding: 0 55px;
+    }
+    
+    .romantic-text {
+        font-size: clamp(0.95rem, 3.2vw, 1.4rem);
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .romantic-text {
+        font-size: clamp(1rem, 3.5vw, 1.4rem);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .prev-btn {
+        left: 0.5rem;
+    }
+    
+    .next-btn {
+        right: 0.5rem;
+    }
+    
+    .arrow {
+        font-size: 0.9rem;
+    }
+    
+    .couple-photo {
+        max-width: 200px;
+        max-height: 240px;
+    }
+    
+    .photo-container {
+        margin: 0.8rem 0;
+    }
+    
+    .text-content {
+        padding: 0 45px;
+    }
+    
+    .hearts {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .scene-indicators {
+        bottom: 1.5rem;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .romantic-text {
+        font-size: clamp(0.9rem, 3.2vw, 1.2rem);
+        margin-bottom: 0.8rem;
+    }
+    
+    .text-content {
+        padding: 0 35px;
+        min-height: 55vh;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .arrow {
+        font-size: 0.8rem;
+    }
+    
+    .couple-photo {
+        max-width: 180px;
+        max-height: 220px;
+    }
+    
+    .hearts {
+        font-size: 1.3rem;
+    }
+}
